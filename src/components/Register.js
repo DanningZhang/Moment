@@ -1,27 +1,43 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
+import $ from 'jquery';
+import {API_ROOT} from "../constants"
 
 const FormItem = Form.Item;
 
 class RegistrationForm extends React.Component {
+
     state = {
         confirmDirty: false,
-    };
+        autoCompleteResult: [],
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                $.ajax({
+                    url: `${API_ROOT}/signup`,
+                    method: 'POST',
+                    data: JSON.stringify({
+                        username: values.username,
+                        password: values.password,
+                    })
+                }).then((response) => {
+                    message.success(response);
+                }, (response) => {
+                    message.error(response.responseText);
+                }).catch((error) => {
+                    console.log(error);
+                });
             }
         });
     }
-
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
-
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
@@ -30,7 +46,6 @@ class RegistrationForm extends React.Component {
             callback();
         }
     }
-
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
@@ -38,8 +53,6 @@ class RegistrationForm extends React.Component {
         }
         callback();
     }
-
-
     render() {
         const { getFieldDecorator } = this.props.form;
 
@@ -73,9 +86,7 @@ class RegistrationForm extends React.Component {
                     label="Username"
                 >
                     {getFieldDecorator('username', {
-                        rules: [ {
-                            required: true, message: 'Please input your E-mail!',
-                        }],
+                        rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
                     })(
                         <Input />
                     )}

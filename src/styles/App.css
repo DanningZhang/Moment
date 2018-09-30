@@ -1,5 +1,6 @@
-@import '../../node_modules/antd/dist/antd.css';
+@import '~antd/dist/antd.css';
 @import 'Register.css';
+@import 'Main.css';
 
 .App {
   text-align: center;
@@ -8,7 +9,7 @@
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 60px;
-  float : left;
+  float: left;
 }
 
 .App-header {
@@ -19,8 +20,8 @@
 
 .App-title {
   font-size: 1.5em;
-  float : left;
-  color : #61DAFB;
+  float: left;
+  color: #61dafb;
   padding-top: 16px;
 }
 
