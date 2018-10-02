@@ -1,6 +1,7 @@
 @import 'Register.css';
 @import 'Main.css';
 @import 'Login.css';
+@import 'Header.css';
 
 .App {
   text-align: center;
@@ -27,6 +28,10 @@
 
 .App-intro {
   font-size: large;
+}
+
+.App-logout {
+  float : right;
 }
 
 @keyframes App-logo-spin {
