@@ -8,9 +8,7 @@ export class AroundMarker extends React.Component{
 
     onToggleOpen = () => {
         this.setState((prevState) => {
-            return {
-                isOpen: !prevState.isOpen,
-            };
+            return { isOpen: !prevState.isOpen };
         });
     }
 
@@ -22,7 +20,8 @@ export class AroundMarker extends React.Component{
                 onMouseOver={this.onToggleOpen}
                 onMouseOut={this.onToggleOpen}
             >
-                {this.state.isOpen ?
+                {
+                    this.state.isOpen ?
                     <InfoWindow onCloseClick={this.onToggleOpen}>
                         <div>
                             <img className="around-marker-image" src={url} alt="Oops..."/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import {POS_KEY} from "../constants";
-import {AroundMarker} from "./AroundMarker"
+import {AroundMarker} from "./MapMarker"
 
 class AroundMap extends React.Component{
     saveMapRef = (map) => {
