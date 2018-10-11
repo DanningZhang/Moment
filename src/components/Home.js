@@ -34,7 +34,6 @@ export class Home extends React.Component {
     }
 
     onSuccessLoadGeoLocation = (position) => {
-        console.log(position);
         this.setState({ loadingGeoLocation: false, error: '' });
         const { latitude, longitude } = position.coords;
         localStorage.setItem(POS_KEY, JSON.stringify({lat: latitude, lon: longitude}));
@@ -81,7 +80,6 @@ export class Home extends React.Component {
             },
         }).then((response) => {
             this.setState({ posts: response || [], loadingPosts: false, error: '' });
-            console.log(response);
         }, (error) => {
             this.setState({ loadingPosts: false, error: error.responseText });
             console.log(error);
