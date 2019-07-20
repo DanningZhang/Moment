@@ -35,10 +35,12 @@ class RegistrationForm extends React.Component {
             }
         });
     }
+
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
+
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
@@ -47,6 +49,7 @@ class RegistrationForm extends React.Component {
             callback();
         }
     }
+
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
@@ -54,6 +57,7 @@ class RegistrationForm extends React.Component {
         }
         callback();
     }
+
     render() {
         const { getFieldDecorator } = this.props.form;
 
